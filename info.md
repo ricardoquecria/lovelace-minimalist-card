@@ -36,7 +36,7 @@ entity_main: sensor.time
 type: custom:minimalist-card
 entity_main: sensor.time
 color_main: var(--primary-text-color)
-size_main: 12
+size_main: 10
 ```
 
 #### Example with two entities 
@@ -44,11 +44,11 @@ size_main: 12
 type: custom:minimalist-card
 entity_main: sensor.time
 color_main: var(--primary-text-color)
-size_main: 12
+size_main: 10
 entity_secondary: sensor.date
 color_secondary: var(--disabled-color)
-size_secondary: 5
-divider_space: 12
+size_secondary: 3
+divider_space: 5
 ```
 
 Inspired by the [Bignumber Card](https://github.com/custom-cards/bignumber-card)
