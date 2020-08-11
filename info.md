@@ -29,19 +29,24 @@ resources:
 | background | integer | var(--ha-card-background) | Card background color |
 | position | integer | center | Set align with `center` `left` `right`|
 
+
 #### Basic setup
 ```
 type: custom:minimalist-card
 entity_main: sensor.time
 ```
+![Cards](/docs/imgs/demo_basic.png)
+
 
 #### Example with one entity
 ```
 type: custom:minimalist-card
 entity_main: sensor.time
-color_main: var(--primary-text-color)
-size_main: 10
+color_main: var(--primary-color)
+size_main: 12
 ```
+![Cards](/docs/imgs/demo_color.png)
+
 
 #### Example with two entities 
 ```
@@ -53,6 +58,39 @@ entity_secondary: sensor.date
 color_secondary: var(--disabled-color)
 size_secondary: 3
 divider_space: 5
+position: center
 ```
+![Cards](/docs/imgs/demo_center.png)
+
+
+#### Examples of positions
+```
+type: custom:minimalist-card
+entity_main: sensor.time
+entity_secondary: sensor.date
+position: left
+```
+![Cards](/docs/imgs/demo_left.png)
+
+```
+type: custom:minimalist-card
+entity_main: sensor.time
+entity_secondary: sensor.date
+position: right
+```
+![Cards](/docs/imgs/demo_right.png)
+
+
+#### Examples with background color
+```
+type: custom:minimalist-card
+entity_main: sensor.time
+entity_secondary: sensor.date
+background: var(primary-color)
+# Accepts hex, rgb, rgba and background image
+```
+![Cards](/docs/imgs/demo_bg.png)
+
+
 
 Inspired by the [Bignumber Card](https://github.com/custom-cards/bignumber-card)
