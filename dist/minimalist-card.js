@@ -21,8 +21,10 @@ class MinimalistCard extends HTMLElement {
       if (!cardConfig.size_main) cardConfig.size_main = 10;
       if (!cardConfig.size_secondary) cardConfig.size_secondary = 3;
       if (!cardConfig.divider_space) cardConfig.divider_space = 5;
+      if (!cardConfig.position) cardConfig.position = 'center';
       if (!cardConfig.background) cardConfig.background = 'var(--ha-card-background, var(--card-background-color))';
-			if (!config.entity_secondary) cardConfig.divider_space = 0;
+      if (!config.entity_secondary) cardConfig.divider_space = 0;
+      
       if (!cardConfig.from) cardConfig.from = "left";
       const card = document.createElement('ha-card');
       const content = document.createElement('div');
@@ -31,12 +33,13 @@ class MinimalistCard extends HTMLElement {
       entity_sec.id = "entity_sec"
       entity_sec.textContent = cardConfig.entity_sec;
 			const style = document.createElement('style');
-			cardConfig.space = (cardConfig.size_main + cardConfig.size_secondary);
+      cardConfig.space = (cardConfig.size_main + cardConfig.size_secondary);
+      if (config.entity_secondary) cardConfig.bottom_space = cardConfig.space/6;
       style.textContent = `
         ha-card {
-          text-align: center;
+          text-align: ${cardConfig.position};
           --base-unit: 5px;
-          padding: calc(var(--base-unit)*${cardConfig.space}/4) 0px;
+          padding: calc(var(--base-unit)*${cardConfig.space}/4) calc(var(--base-unit)*${cardConfig.space}/3);
           background: ${cardConfig.background};
         }
         #entity_main {
@@ -48,7 +51,8 @@ class MinimalistCard extends HTMLElement {
 				#entity_sec {
 					font-size: calc(var(--base-unit) * ${cardConfig.size_secondary});
 					line-height: calc(var(--base-unit) * ${cardConfig.size_secondary});
-					color: ${cardConfig.color_secondary};
+          color: ${cardConfig.color_secondary};
+          margin-bottom: ${cardConfig.bottom_space}px;
 	
 				}`;
 

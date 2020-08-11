@@ -24,6 +24,7 @@ resources:
 | size__secondary | integer | 3 | Secondary entity state size |
 | divider_space | integer | 5 | Space between the two entities, if any. |
 | background | integer | var(--ha-card-background) | Card background color |
+| position | integer | center | Set align with `center` `left` `right`|
 
 #### Basic setup
 ```
