@@ -23,7 +23,7 @@ resources:
 | color_secondary | string | var(--disabled-color) | Secondary entity state color |
 | size__secondary | integer | 3 | Secondary entity state size |
 | divider_space | integer | 5 | Space between the two entities, if any. |
-
+| background | integer | var(--ha-card-background) | Card background color |
 
 #### Basic setup
 ```
