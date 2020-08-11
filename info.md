@@ -1,6 +1,9 @@
 # Lovelace Minimalist Card
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge)](https://github.com/custom-components/hacs)
 
+![Cards](/docs/imgs/cards.gif)
+
+
 Install on HACS using the "Custom repositories" option.
 
 
@@ -25,7 +28,6 @@ resources:
 | divider_space | integer | 5 | Space between the two entities, if any. |
 | background | integer | var(--ha-card-background) | Card background color |
 | position | integer | center | Set align with `center` `left` `right`|
-
 
 #### Basic setup
 ```
