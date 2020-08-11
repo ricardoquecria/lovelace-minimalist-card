@@ -20,7 +20,8 @@ class MinimalistCard extends HTMLElement {
 			if (!cardConfig.color_secondary) cardConfig.color_secondary = 'var(--disabled-color)';
       if (!cardConfig.size_main) cardConfig.size_main = 10;
       if (!cardConfig.size_secondary) cardConfig.size_secondary = 3;
-			if (!cardConfig.divider_space) cardConfig.divider_space = 5;
+      if (!cardConfig.divider_space) cardConfig.divider_space = 5;
+      if (!cardConfig.background) cardConfig.background = 'var(--ha-card-background, var(--card-background-color))';
 			if (!config.entity_secondary) cardConfig.divider_space = 0;
       if (!cardConfig.from) cardConfig.from = "left";
       const card = document.createElement('ha-card');
@@ -36,7 +37,7 @@ class MinimalistCard extends HTMLElement {
           text-align: center;
           --base-unit: 5px;
           padding: calc(var(--base-unit)*${cardConfig.space}/4) 0px;
-          background: var(--ha-card-background, var(--card-background-color));
+          background: ${cardConfig.background};
         }
         #entity_main {
           font-size: calc(var(--base-unit) * ${cardConfig.size_main});
