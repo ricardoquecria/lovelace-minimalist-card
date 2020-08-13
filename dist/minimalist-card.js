@@ -34,18 +34,113 @@ class MinimalistCard extends HTMLElement {
     if (!cardConfig.size_title) cardConfig.size_title = 3;
 
     if (!cardConfig.margin) cardConfig.margin = 5;
-    if (!cardConfig.align) cardConfig.align = 'center';
     if (!cardConfig.background) cardConfig.background = 'var(--ha-card-background, var(--card-background-color))';
-
-    if (!cardConfig.title_position) cardConfig.title_position = 'top';
+    
+    
     if (!cardConfig.title) title_text = '';
-
+    
     if (!cardConfig.entity_primary) {
-      cardConfig.margin = 0;
       if (!cardConfig.entity_secondary) title_text = 'Enter a title or entity_primary.';
     }
-
+    
     if (cardConfig.title) title_text = cardConfig.title;
+    
+    if (!cardConfig.title_position) cardConfig.title_position = 'top';
+    if (!cardConfig.align) cardConfig.align = 'center';
+
+    if (cardConfig.align === 'center' || cardConfig.align === 'left' || cardConfig.align === 'right') {
+      cardConfig.align = cardConfig.align;
+    } 
+    else {
+      cardConfig.align = 'center';
+      title_text = 'Set the align with "left", "center" or "right"';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+
+
+
+    
+    if (cardConfig.title_position === 'top' || cardConfig.title_position === 'mid' || cardConfig.title_position === 'middle' || cardConfig.title_position === 'bottom' || cardConfig.title_position === 'bot') {
+      cardConfig.title_position = cardConfig.title_position;
+    } 
+    else {
+      cardConfig.title_position = 'top';
+      title_text = 'Set the title position with "top", "middle" or "bottom"';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+
+    if (cardConfig.margin >= 0) {
+      cardConfig.margin = cardConfig.margin;
+    } 
+    else {
+      cardConfig.margin = 5;
+      title_text = 'Set the margin with integer value';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+    
+    if (cardConfig.size_primary >= 0) {
+      cardConfig.size_primary = cardConfig.size_primary;
+    } 
+    else {
+      cardConfig.size_primary = 5;
+      title_text = 'Set the size primary with integer value';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+   
+    if (cardConfig.size_secondary >= 0) {
+      cardConfig.size_secondary = cardConfig.size_secondary;
+    } 
+    else {
+      cardConfig.size_secondary = 5;
+      title_text = 'Set the size secondary with integer value';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+
+    if (cardConfig.size_title >= 0) {
+      cardConfig.size_title = cardConfig.size_title;
+    } 
+    else {
+      title_text = 'Set the size title with integer value';
+      cardConfig.color_title = '#f2f2f2';
+      cardConfig.size_title = 3;
+      cardConfig.error_background = '#cf365a';
+      cardConfig.error_padding = 8;
+      cardConfig.error_padding2 = 20;
+      cardConfig.error_align = 'center';
+      cardConfig.margin = 10;
+    }
+
+
 
     const card = document.createElement('ha-card');
     const entityPrimary = document.createElement('div');
@@ -71,8 +166,12 @@ class MinimalistCard extends HTMLElement {
         #title {
           font-size: calc(var(--base-unit) * ${cardConfig.size_title});
           line-height: calc(var(--base-unit) * ${cardConfig.size_title});
-          margin: ${cardConfig.margin}px 0px ${cardConfig.margin}px 0px;
+          margin: ${cardConfig.margin}px ${cardConfig.error_padding2}px ${cardConfig.margin}px ${cardConfig.error_padding2}px;
           color: ${cardConfig.color_title};
+          background: ${cardConfig.error_background};
+          padding: ${cardConfig.error_padding}px;
+          border-radius: 10px;
+          text-align: ${cardConfig.error_align};
 				}
         #entity-primary {
           font-size: calc(var(--base-unit) * ${cardConfig.size_primary});
@@ -93,12 +192,12 @@ class MinimalistCard extends HTMLElement {
       card.appendChild(entityPrimary);
       card.appendChild(entity_sec);
     }
-    if (cardConfig.title_position === 'middle') {
+    if (cardConfig.title_position === 'middle' || cardConfig.title_position === 'mid') {
       card.appendChild(entityPrimary);
       card.appendChild(title);
       card.appendChild(entity_sec);
     }
-    if (cardConfig.title_position === 'bottom') {
+    if (cardConfig.title_position === 'bottom' || cardConfig.title_position === 'bot') {
       card.appendChild(entityPrimary);
       card.appendChild(entity_sec);
       card.appendChild(title);

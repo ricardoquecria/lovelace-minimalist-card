@@ -19,77 +19,104 @@ resources:
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | type | string | **required** | `custom:minimalist-card`|
-| entity_main | string | **required** | example: `sensor.time` |
-| color_main | string | var(--primary-text-color) | Main entity state color |
-| size_main | integer | 10 | Main entity state size |
+| entity_primary | string | **required** | example: `sensor.time` |
+| color_primary | string | var(--primary-text-color) | Main entity state color |
+| size_primary | integer | 10 | Main entity state size |
 | entity_secondary | string | optional | example: `sensor.date` |
 | color_secondary | string | var(--disabled-color) | Secondary entity state color |
-| size__secondary | integer | 3 | Secondary entity state size |
-| divider_space | integer | 5 | Space between the two entities, if any. |
+| size_secondary | integer | 3 | Secondary entity state size |
+| title | string | optional | example: `Home Assistant Brazil` |
+| color_title | string | var(--disabled-color) | Change title color |
+| size_title | integer | 3 | Title font size |
+| title_position | string | `top` | Title position in layout `top` `middle` `bottom` |
+| align | integer | `center` | Set align with `center` `left` `right`|
+| margin | integer | 5 | Space between entities or title, if any. |
 | background | integer | var(--ha-card-background) | Card background color |
-| position | integer | center | Set align with `center` `left` `right`|
+
+
+
+
 
 
 #### Basic setup
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
+entity_primary: sensor.time
 ```
-![Cards](/docs/imgs/demo_basic.png)
 
 
 #### Example with one entity
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
-color_main: var(--primary-color)
-size_main: 12
+entity_primary: sensor.time
+color_primary: var(--primary-color)
+size_primary: 12
 ```
-![Cards](/docs/imgs/demo_color.png)
+
+#### Example with title only
+```
+type: custom:minimalist-card
+title: Home Assistant Brazil
+size_title: 6
+margin: 20
+```
+
 
 
 #### Example with two entities 
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
-color_main: var(--primary-text-color)
-size_main: 10
+entity_primary: sensor.time
+color_primary: var(--primary-text-color)
+size_primary: 10
 entity_secondary: sensor.date
 color_secondary: var(--disabled-color)
 size_secondary: 3
-divider_space: 5
-position: center
+margin: 5
+align: left
 ```
-![Cards](/docs/imgs/demo_center.png)
+
+#### Example with title and two entities 
+```
+type: custom:minimalist-card
+entity_primary: sensor.time
+color_primary: var(--primary-text-color)
+size_primary: 10
+entity_secondary: sensor.date
+color_secondary: var(--disabled-color)
+size_secondary: 3
+title: Home Assistant Brazil
+title_position: bottom
+margin: 5
+align: left
+```
 
 
 #### Examples of positions
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
+entity_primary: sensor.time
 entity_secondary: sensor.date
 position: left
 ```
-![Cards](/docs/imgs/demo_left.png)
 
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
+entity_primary: sensor.time
 entity_secondary: sensor.date
 position: right
 ```
-![Cards](/docs/imgs/demo_right.png)
+
 
 
 #### Examples with background color
 ```
 type: custom:minimalist-card
-entity_main: sensor.time
+entity_primary: sensor.time
 entity_secondary: sensor.date
 background: var(primary-color)
 # Accepts hex, rgb, rgba and background image
 ```
-![Cards](/docs/imgs/demo_bg.png)
 
 
 
