@@ -1,4 +1,5 @@
 var dual = true;
+var title_text;
 class MinimalistCard extends HTMLElement {
     constructor() {
       super();
@@ -17,11 +18,17 @@ class MinimalistCard extends HTMLElement {
       const cardConfig = Object.assign({}, config);
       if (root.lastChild) root.removeChild(root.lastChild);
 			if (!cardConfig.color_main) cardConfig.color_main = 'var(--primary-text-color)';
-			if (!cardConfig.color_secondary) cardConfig.color_secondary = 'var(--disabled-color)';
+      if (!cardConfig.color_secondary) cardConfig.color_secondary = 'var(--disabled-color)';
+      if (!cardConfig.color_title) cardConfig.color_title = 'var(--primary-color)';
       if (!cardConfig.size_main) cardConfig.size_main = 10;
       if (!cardConfig.size_secondary) cardConfig.size_secondary = 3;
+      if (!cardConfig.size_title) cardConfig.size_title = 3;
       if (!cardConfig.divider_space) cardConfig.divider_space = 5;
+      if (!cardConfig.divider_title) cardConfig.divider_title = 5;
       if (!cardConfig.position) cardConfig.position = 'center';
+      if (!cardConfig.title) title_text = '';
+      if (!cardConfig.title) cardConfig.divider_title = 0;
+      if (cardConfig.title) title_text = cardConfig.title;
       if (!cardConfig.background) cardConfig.background = 'var(--ha-card-background, var(--card-background-color))';
       if (!config.entity_secondary) cardConfig.divider_space = 0;
       
@@ -29,9 +36,13 @@ class MinimalistCard extends HTMLElement {
       const card = document.createElement('ha-card');
       const content = document.createElement('div');
       content.id = "entity_main"
+      const title = document.createElement('div');
+      title.id = "title"
+      title.textContent = cardConfig.title;
       const entity_sec = document.createElement('div');
       entity_sec.id = "entity_sec"
       entity_sec.textContent = cardConfig.entity_sec;
+
 			const style = document.createElement('style');
       cardConfig.space = (cardConfig.size_main + cardConfig.size_secondary);
       if (config.entity_secondary) cardConfig.bottom_space = cardConfig.space/6;
@@ -42,6 +53,7 @@ class MinimalistCard extends HTMLElement {
           padding: calc(var(--base-unit)*${cardConfig.space}/4) calc(var(--base-unit)*${cardConfig.space}/3);
           background: ${cardConfig.background};
         }
+
         #entity_main {
           font-size: calc(var(--base-unit) * ${cardConfig.size_main});
 					line-height: calc(var(--base-unit) * ${cardConfig.size_main});
@@ -53,11 +65,13 @@ class MinimalistCard extends HTMLElement {
 					line-height: calc(var(--base-unit) * ${cardConfig.size_secondary});
           color: ${cardConfig.color_secondary};
           margin-bottom: ${cardConfig.bottom_space}px;
-	
-				}`;
+        }
 
+        `;
+      card.appendChild(title);
       card.appendChild(content);
       card.appendChild(entity_sec);
+      
       card.appendChild(style);
       card.addEventListener('click', event => {
 				this._click('hass-more-info', { entityId: cardConfig.entity_main });
@@ -86,13 +100,15 @@ class MinimalistCard extends HTMLElement {
       const root = this.shadowRoot;
 			if (dual === false) {
 				config.entity_secondary = config.entity_main;
-			}
+      }
+      let title = title_text;
 			let entity_mainState = hass.states[config.entity_main].state;
 			let entity_secondaryState = hass.states[config.entity_secondary].state;
 			let measurement_main = hass.states[config.entity_main].attributes.unit_of_measurement || "";
 			let measurement_sec = hass.states[config.entity_secondary].attributes.unit_of_measurement || "";
       if (entity_mainState !== this._entity_mainState) {
-				root.getElementById("entity_main").textContent = `${entity_mainState} ${measurement_main}`;
+        root.getElementById("entity_main").textContent = `${entity_mainState} ${measurement_main}`;
+        root.getElementById("title").textContent = `${title}`;
 				if (dual === true) {
           root.getElementById("entity_sec").textContent = `${entity_secondaryState} ${measurement_sec}`;
         }
