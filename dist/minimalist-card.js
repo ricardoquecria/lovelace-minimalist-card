@@ -34,6 +34,7 @@ class MinimalistCard extends HTMLElement {
     if (!cardConfig.size_title) cardConfig.size_title = 3;
 
     if (!cardConfig.margin) cardConfig.margin = 5;
+    cardConfig.error_margin = 0;
     if (!cardConfig.background) cardConfig.background = 'var(--ha-card-background, var(--card-background-color))';
     
     
@@ -48,6 +49,9 @@ class MinimalistCard extends HTMLElement {
     if (!cardConfig.title_position) cardConfig.title_position = 'top';
     if (!cardConfig.align) cardConfig.align = 'center';
 
+
+
+
     if (cardConfig.align === 'center' || cardConfig.align === 'left' || cardConfig.align === 'right') {
       cardConfig.align = cardConfig.align;
     } 
@@ -58,14 +62,11 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
 
-
-
-    
     if (cardConfig.title_position === 'top' || cardConfig.title_position === 'mid' || cardConfig.title_position === 'middle' || cardConfig.title_position === 'bottom' || cardConfig.title_position === 'bot') {
       cardConfig.title_position = cardConfig.title_position;
     } 
@@ -76,7 +77,7 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
@@ -91,7 +92,7 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
@@ -106,7 +107,7 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
@@ -121,7 +122,7 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
@@ -135,7 +136,7 @@ class MinimalistCard extends HTMLElement {
       cardConfig.size_title = 3;
       cardConfig.error_background = '#cf365a';
       cardConfig.error_padding = 8;
-      cardConfig.error_padding2 = 20;
+      cardConfig.error_margin = 20;
       cardConfig.error_align = 'center';
       cardConfig.margin = 10;
     }
@@ -166,7 +167,7 @@ class MinimalistCard extends HTMLElement {
         #title {
           font-size: calc(var(--base-unit) * ${cardConfig.size_title});
           line-height: calc(var(--base-unit) * ${cardConfig.size_title});
-          margin: ${cardConfig.margin}px ${cardConfig.error_padding2}px ${cardConfig.margin}px ${cardConfig.error_padding2}px;
+          margin: ${cardConfig.margin}px ${cardConfig.error_margin}px ${cardConfig.margin}px ${cardConfig.error_margin}px;
           color: ${cardConfig.color_title};
           background: ${cardConfig.error_background};
           padding: ${cardConfig.error_padding}px;
