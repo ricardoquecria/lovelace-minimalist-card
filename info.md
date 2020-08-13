@@ -19,7 +19,7 @@ resources:
 | Name | Type | Default | Description |
 |------|------|---------|-------------|
 | type | string | **required** | `custom:minimalist-card`|
-| entity_primary | string | **required** | example: `sensor.time` |
+| entity_primary | string | optional | example: `sensor.time` |
 | color_primary | string | var(--primary-text-color) | Main entity state color |
 | size_primary | integer | 10 | Main entity state size |
 | entity_secondary | string | optional | example: `sensor.date` |
